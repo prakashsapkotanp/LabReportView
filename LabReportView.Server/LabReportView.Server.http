@@ -1,0 +1,6 @@
+@LabReportView.Server_HostAddress = http://localhost:5237
+
+GET {{LabReportView.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
