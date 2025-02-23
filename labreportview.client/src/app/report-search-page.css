@@ -1,87 +1,7 @@
 
-body {
-  font-family: Verdana !important;
-}
-
-div:not(.gen-sticker-wrapper) {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-
-/*CSS for FlexGrid starts*/
-.flex-container {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.justify-sp-between {
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
-}
-
-.justify-center {
-  -webkit-justify-content: center;
-  justify-content: center;
-}
-
-.flex-align-center {
-  -webkit-align-items: center;
-  align-items: center;
-}
-
-.flex-align-stretch {
-  -webkit-align-items: stretch;
-  align-items: stretch;
-}
-
-.flex-1 {
-  flex: 1;
-}
-
-.flex-2 {
-  flex: 2;
-}
-
-.flex-3 {
-  flex: 3;
-}
-
-.flex-4 {
-  flex: 4;
-}
-
-.flex-5 {
-  flex: 5;
-}
-
-.flex-6 {
-  flex: 6;
-}
 
 /*CSS for FlexGrid Ends*/
 
-#printpage table tr td {
-  font-size: 12px;
-}
-#printpage table th {
-  font-size: 12px;
-  font-weight: bold;
-}
-#printpage p {
-  font-family: Verdana !important;
-}
-.cust-hdr-name {
-  font-size: 25px !important;
-}
-
-.patient-hdr-label{
-  margin-bottom: 0px;
-}
 
 /*body.lab-rpt4moz {
   height: 100%;
@@ -101,65 +21,7 @@ div:not(.gen-sticker-wrapper) {
 
 
 /*CSS for Printing LabReport Starts */
-.ht-culture-grp-separation {
-height: 25px;
-}
-.lab-rpt-container{min-height: 175mm;font-family: 'Open Sans',sans-serif;}
-.dontbreak{page-break-inside: avoid;}
-.martop{margin-top: 45px;}
-.dontShowInPrint{display:none;}
-div.lab-rpt-sign {display: block;}
-.right-hdr{min-width: 325px;float: right;}
-table.patient-info-tabl > thead{ display:table-header-group }
-table.patient-info-tabl > tfoot{ display:table-footer-group }
-.edit-ic{display: none;}
-thead.show-gap:after{ content: "";width: 100%;display: block;height: 20px;}
-.samcode{display: inherit;}
-.samcode-input{display: none;}
-.lab-rpt-container{width: 100%;}
-.lab-rpt-sign{width:100% !important;}
-.no-print{ display:none !important;}
-table.patient-info-tabl thead tr td, table.patient-info-tabl thead tr th {text-align: left;}
-.rpt-curholder{padding:0px;}
-table.patient-info-tabl{width: 100% !important;}
-.right-hdrwith-barcode{min-width: 382px;position: relative;line-height: 18px;}
-.rpt-curholder {width: 100%;margin: 0 auto; background: #fff;position: relative;}
-.patient-info-tabl {border-collapse: collapse;font-size: 13px;}
-.headerimage {width: 100%;}
-.patient-info-box {
-width: 100%;
-text-align: left;
-display: block;
-padding-top: 2px;
-padding-bottom: 2px;
-}
-.cstm-flex-container {
-display: -webkit-box;
-display: -moz-box;
-display: -ms-flexbox;
-display: -webkit-flex;
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-}
-.single-head {
-padding: 1px 0px;
-}
-.left-col-data {
-padding-left: 7px;
-}
-.right-col-data {
-padding-right: 3px;
-white-space: nowrap;
-width: 100%;
-float: left;
-}
-.single-head{
-display: flex;
-flex-basis: 100%;
-flex: 1;
-flex-direction: column;
-}
+
 /*.single-head:nth-child(odd){
 width: 60%;
 }

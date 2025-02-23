@@ -90,6 +90,7 @@ export class ReportSearchComponent {
                     this.loading = false;
                     this.showPopUp = true;
                     this.showHeader= true;
+                    this.showBarCode = true;
                     // this.isCultureRptLoaded = true; 
                     // this.showIntermediateInCultureRpt= false;
                     this.showSignatories = true;

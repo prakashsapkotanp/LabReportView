@@ -6,20 +6,14 @@
 </div>
 <div class="warpper" style="margin:20px">
   <div class="row">
-    <div class="col-md-10">
-      <input type="text" class="col-md-8"
+    <h1 class="text-center mb-3" style= "font-size: 3rem; height: 60px;">ल्याब  रिपोर्ट हेर्न बारकोड / QR कोड हाल्नुहोस</h1>
+    <div class="form-control form-control-lg">
+      <input type="text" class="form-control form-control-lg"
         placeholder="Enter Barcode number" input type="number"
         [(ngModel)]="barcodeNumber" aria-label="Barcode Number">
     </div>
-    <!-- <div class="row">
-      <ngx-barcode *ngIf="barcodeNumber && barcodeNumber != ''" [bc-value]="barcodeNumber" [bc-format]="barCodeFormat" [bc-display-value]="true"></ngx-barcode>    </div>
-      <div class="row">
-      
-    </div> -->
-
-    <div class="col-md-2">
-      <button class="btn btn-primary"
-        (click)="onButtonClick()">Submit</button>
+    <div class="col-md-12 mt-3">
+      <button class="btn btn-primary w-100 btn-lg" style="height: 60px;" (click)="onButtonClick()">Submit</button>
     </div>
   </div>
   <div class="warpper" style="margin-top: 20px;">
@@ -76,19 +70,15 @@
                               </div>
                             </div>
                             <div class="single-head">
-                              <div class="right-col-data">
+                              <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
                                 <div style="position: relative;">
-                                  <div class="lab-barcode-holder" style="
-                                        position: absolute;
-                                        right: 2px;
-                                        top: -2px;
-                                      ">
-                                      <div>
-                                        <svg #barcode>
-                                          
-                                        </svg></div>
-                                        
-                                      
+                                  <div *ngIf="showBarCode" class="lab-barcode-holder" style="
+                                  position: absolute;
+                                  right: 2px;
+                                  top: -2px;
+                                ">
+                                      <div style="position: relative;">
+                                        <svg #barcode></svg></div>             
                                   </div>
                                   <strong>Patient No.</strong> :
                                   {{report.Lookups.PatientCode}}
@@ -96,7 +86,7 @@
                                   <b *ngIf="hasInsurance"> / (Insurance)</b>
                                 </div>
                               </div>
-                            </div>
+                            </div> 
                           </div>
                           <div
                             class="flex-container flex-align-center justify-sp-around">
@@ -116,7 +106,7 @@
                             <div class="single-head">
                               <div class="right-col-data">
                                 <div
-                                  [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
+                                [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
                                   <strong>Age/Sex</strong> :
                                   {{report.Lookups.DOB}}
                                   /{{report.Lookups.Gender}}
