@@ -23,4 +23,5 @@ export class TestComponent {
     IsActive: boolean | null;
     AbnormalType: string | null;
     ResultGroup: number;
+    ControlType: string;
 }

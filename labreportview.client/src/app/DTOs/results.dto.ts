@@ -6,8 +6,11 @@ export class ResultDTO {
     Header: string; 
     Lookups: LookupDTO;
     Columns: string;
+    
     ReportId: number;
-    Signatories: Array<SignatoryDTO> = new Array<SignatoryDTO>();
+    Signatories: string;
+    Signatures: Array<SignatoryDTO> = new Array<SignatoryDTO>();
+
     TemplateId: number;
     TemplateType: string;
     TemplateHTML: string | null;
@@ -26,6 +29,7 @@ export class ResultDTO {
     PrintCount: number;
     PrintedByName: string;
     HasInsurance: boolean;
+    VisitTypeCode: string;
     Templates: Array<TemplateDTO> = new Array <TemplateDTO>();
 }
 
