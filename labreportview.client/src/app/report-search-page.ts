@@ -1,9 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, NgModule } from '@angular/core';
+import { Component, ElementRef, NgModule, ViewChild } from '@angular/core';
 import { ResultDTO } from './DTOs/results.dto';
 import { ColumnDTO } from './DTOs/column.dto';
-import { NgxBarcode6Module } from "ngx-barcode6";
-
+import * as JsBarcode from 'jsbarcode';
 @Component({
     selector: 'report-search-page',
     templateUrl: './report-search-page.html',
@@ -95,6 +94,7 @@ export class ReportSearchComponent {
                     // this.showIntermediateInCultureRpt= false;
                     this.showSignatories = true;
                     this.showDigitalSignature= true;
+                    this.generateBarcode(this.stringBarCodeNumber);
                 },
                 (error) => {
                     alert('Test with this barcode number is not completed');
@@ -120,7 +120,7 @@ export class ReportSearchComponent {
                 </head>
                 <body onload="window.print()">${printContent}</body>
               </html>
-            `;
+            `;          
 
                 const iframe = document.createElement('iframe');
                 document.body.appendChild(iframe);
@@ -137,6 +137,36 @@ export class ReportSearchComponent {
                 alert("No content to print.");
             }
 
+    }
+    @ViewChild('barcode', { static: false }) barcodeElement!: ElementRef;
+
+//   ngAfterViewInit() {
+//    ;
+//   }
+    updateBarcode(newBarcode: string) {
+        this.stringBarCodeNumber = newBarcode;
+        this.generateBarcode(this.stringBarCodeNumber);
+      }
+      generateBarcode(barcodeValue: string) {
+        setTimeout(() => {
+            if (this.barcodeElement && this.barcodeElement.nativeElement) {
+                JsBarcode(this.barcodeElement.nativeElement, barcodeValue, {
+                    format: "CODE128",
+                    displayValue: true,
+                    // lineColor: "#000",
+                    // width: 2,
+                    // height: 15  // Adjust height here
+                    // margin: 1  // Optional: set margin if you need spacing around the barcode
+                    width: 1.5,
+                    height: 30,
+                    fontSize: 14,
+                    textMargin: 1,
+                    margin: 10
+                });
+            } else {
+                console.error("Barcode element not found");
+            }
+        }, 200);
     }
     closePopUpBox() {
         this.showPopUp = false;

@@ -65,15 +65,6 @@
                       </div>
                     </tr>
                     <tr>
-                      <div class="row">BARCode:
-                        <ngx-barcode
-                          *ngIf="stringBarCodeNumber"
-                          [bc-value]="stringBarCodeNumber"
-                          [bc-format]="selectedFormat"
-                          [bc-display-value]="true">
-                        </ngx-barcode>
-                      </div></tr>
-                    <tr>
                       <td colspan="2" class="prelim-sig-holder">
                         <div class="patient-info-box" id="single-lab-report">
                           <div
@@ -86,21 +77,18 @@
                             </div>
                             <div class="single-head">
                               <div class="right-col-data">
-                                <div
-                                  [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'"
-                                  style="position: relative;">
-                                  <div *ngIf="showBarCode"
-                                    class="lab-barcode-holder" style="
+                                <div style="position: relative;">
+                                  <div class="lab-barcode-holder" style="
                                         position: absolute;
                                         right: 2px;
                                         top: -2px;
                                       ">
-                                    <!-- <danphe-bar-code
-                                      [barcode-number]="report.BarCodeNumber"
-                                      [width]="1.5"
-                                      [height]="24" [barcode-margin]="2"
-                                      [text-margin]="0">
-                                    </danphe-bar-code> -->
+                                      <div>
+                                        <svg #barcode>
+                                          
+                                        </svg></div>
+                                        
+                                      
                                   </div>
                                   <strong>Patient No.</strong> :
                                   {{report.Lookups.PatientCode}}
@@ -278,152 +266,6 @@
                       </td>
                     </tr>
                   </tfoot>
-                  <ng-container>
-                    <tbody *ngIf="showGap || showHeader">
-                      <tr>
-                        <td>
-                          <div style="margin-bottom: 20px;">
-                            <!-- <div class="patient-info-box" -->
-                            id="single-lab-report">
-                            <div
-                              class="flex-container flex-align-center justify-sp-around">
-                              <div class="single-head">
-                                <div class="left-col-data">
-                                  <strong>Name</strong> :
-                                  {{report.Lookups.PatientName}}
-                                </div>
-                              </div>
-                              <div class="single-head">
-                                <div class="right-col-data">
-                                  <div
-                                    [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'"
-                                    style="position: relative;">
-                                    <div *ngIf="showBarCode"
-                                      class="lab-barcode-holder" style="
-                                            position: absolute;
-                                            right: 2px;
-                                            top: -2px;
-                                          ">
-                                      <danphe-bar-code
-                                        [barcode-number]="report.BarCodeNumber"
-                                        [width]="1.5"
-                                        [height]="24" [barcode-margin]="2"
-                                        [text-margin]="0">
-                                      </danphe-bar-code>
-                                    </div>
-                                    <strong>Patient No.</strong> :
-                                    {{report.Lookups.PatientCode}}
-                                    (<b>{{report.Lookups.VisitType}}</b>)
-                                    <b *ngIf="hasInsurance"> / (Insurance)</b>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              class="flex-container flex-align-center justify-sp-around">
-                              <div class="single-head">
-                                <div class="left-col-data">
-                                  <strong>Address</strong> :
-                                  {{report.Lookups.CountrySubDivisionName !=
-                                  null ?
-                                  report.Lookups.CountrySubDivisionName + ','
-                                  : '' }}
-                                  {{report.Lookups.MunicipalityName != null?
-                                  report.Lookups.MunicipalityName +
-                                  ',' : '' }}
-                                  {{report.Lookups.Address}}
-                                </div>
-                              </div>
-                              <div class="single-head">
-                                <div class="right-col-data">
-                                  <div
-                                    [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                    <strong>Age/Sex</strong> :
-                                    {{report.Lookups.DOB}}
-                                    /{{report.Lookups.Gender}}
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              class="flex-container flex-align-center justify-sp-around">
-                              <div class="referredby single-head">
-                                <!--removed white-space: nowrap;-->
-                                <!-- <div class="left-col-data"> -->
-                                <!--<strong>Referred By :  </strong> <input *ngIf="enableDrEdit" onkeypress="this.style.width = ((this.value.length + 1) * 8) + 'px';" id="docNameTextBox" type="text" [(ngModel)]="report.Lookups.ReferredBy" (focusout)="makeDoctorEdit()" autofocus /> <span (click)="makeDoctorEdit()" *ngIf="!enableDrEdit">{{report.Lookups.ReferredBy}}</span>-->
-                                <strong>{{ referredByLabelInLabReport }}:
-                                </strong><span>{{report.Lookups.ReferredBy}}</span>
-
-                              </div>
-                            </div>
-                            <div class="single-head">
-                              <div class="right-col-data">
-                                <div
-                                  [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                  <strong>Receiving Date</strong> :
-                                  {{report.Lookups.ReceivingDate }}
-                                  ({{report.Lookups.ReceivingDate}})
-                                </div>
-                              </div>
-                            </div>
-                            <!-- </div> -->
-                            <div
-                              class="flex-container flex-align-center justify-sp-around">
-                              <div class="single-head">
-                                <div class="left-col-data">
-                                  <strong>Collection Site</strong> :
-                                  {{collectionSite}}
-                                </div>
-                              </div>
-                              <div class="single-head">
-                                <div class="right-col-data">
-                                  <div>
-                                    <ngx-barcode
-                                      [bc-value]="stringBarCodeNumber"
-                                      [bc-format]="selectedFormat"
-                                      [bc-display-value]="true"></ngx-barcode>
-                                  </div>
-                                  <strong>Testing Date</strong>
-                                  :{{report.Lookups.ReportingDate}}
-                                  ({{report.Lookups.ReportingDate}})
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div
-                            class="flex-container flex-align-center justify-sp-around">
-                            <div class="single-head">
-                              <div class="left-col-data">
-                                <strong>Lab No</strong> :
-                                {{report.Lookups.SampleCodeFormatted}}
-
-                              </div>
-                            </div>
-                            <div class="single-head">
-                              <div class="right-col-data">
-                                <div
-                                  [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                  <strong>Reporting Date</strong>
-                                  :{{report.Lookups.VerifiedOn}}
-                                  ({{report.Lookups.VerifiedOn}})
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class="flex-container flex-align-center justify-sp-around">
-                            <div class="single-head">
-                              <div class="left-col-data">
-                                <strong>Specimen</strong> :
-                                {{report.Lookups.Specimen}}
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </ng-container>
 
                   <!--Incase if template Type of a test is NOT html-->
                   <ng-container *ngIf="report.TemplateType != 'html'">

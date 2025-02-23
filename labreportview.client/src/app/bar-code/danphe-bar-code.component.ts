@@ -1,4 +1,3 @@
-import * as JsBarcode from 'jsbarcode';
 import { Component, Directive, Injectable, Input, OnInit } from '@angular/core';
 @Component({
     selector: 'danphe-bar-code',
@@ -26,17 +25,20 @@ export class DanpheBarCodeComponent implements OnInit
     showValue: boolean = true;
     constructor() {
     }
-
-    ngOnInit() {
-        //JsBarcode(".barcode").init();
-        JsBarcode("#barcode", this.BarcodeNum.toString(), {
-            width: this.Width,
-            height: this.Height,
-            fontSize: this.fontSize,
-            textMargin: this.textMargin,
-            margin: this.barcodeMargin,
-            displayValue: this.showValue
-        });
+    ngOnInit(): void {
+        
     }
+
+    // ngOnInit() {
+    //     //JsBarcode(".barcode").init();
+    //     JsBarcode("#barcode", this.BarcodeNum.toString(), {
+    //         width: this.Width,
+    //         height: this.Height,
+    //         fontSize: this.fontSize,
+    //         textMargin: this.textMargin,
+    //         margin: this.barcodeMargin,
+    //         displayValue: this.showValue
+    //     });
+    // }
 
 }

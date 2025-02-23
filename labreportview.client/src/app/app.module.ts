@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { DanpheBarCodeComponent } from './bar-code/danphe-bar-code.component';
 import { ReportSearchComponent } from './report-search-page';
-import { NgxBarcode6Module } from 'ngx-barcode6';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,7 @@ import { NgxBarcode6Module } from 'ngx-barcode6';
     ReportSearchComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule,FormsModule,NgxBarcode6Module
+    BrowserModule, HttpClientModule,FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

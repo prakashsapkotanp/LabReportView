@@ -26,4 +26,10 @@
 <div class="app-container">
     <!-- <h1 style="margin:20px">Lab Report View</h1> -->
     <report-search-page></report-search-page> 
+    <script src="https://cdn.jsdelivr.net/jsbarcode/3.3.20/JsBarcode.all.min.js"></script>
+  <script>
+    setTimeout(function(){ 
+    JsBarcode("#code128", "Hi!");
+   }, 500);
+  </script>
   </div>
