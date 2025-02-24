@@ -108,8 +108,8 @@
                                 <div
                                 [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
                                   <strong>Age/Sex</strong> :
-                                  {{report.Lookups.DOB}}
-                                  /{{report.Lookups.Gender}}
+                                  {{DOB}}
+                                  <!-- /{{report.Lookups.Gender}} -->
                                 </div>
                               </div>
                             </div>
@@ -128,8 +128,7 @@
                                 <div
                                   [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
                                   <strong>Receiving Date</strong> :
-                                  {{report.Lookups.ReceivingDate}}
-                                  ({{report.Lookups.ReceivingDate}})
+                                  {{receivingDate}}
                                 </div>
                               </div>
                             </div>
@@ -147,8 +146,7 @@
                                 <div
                                   [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
                                   <strong>Testing Date</strong>
-                                  :{{report.Lookups.ReportingDate}}
-                                  ({{report.Lookups.ReportingDate}})
+                                  :{{testingDate}}
                                 </div>
                               </div>
                             </div>
@@ -167,8 +165,9 @@
                                 <div
                                   [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
                                   <strong>Reporting Date</strong>
-                                  :{{report.Lookups.VerifiedOn}}
-                                  ({{report.Lookups.VerifiedOn }})
+                                  <!-- :{{report.Lookups.VerifiedOn}}
+                                  ({{report.Lookups.VerifiedOn }}) -->
+                                  :{{reportingDate}}
                                 </div>
                               </div>
                             </div>
