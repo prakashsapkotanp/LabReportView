@@ -6,14 +6,16 @@
 </div>
 <div class="warpper" style="margin:20px">
   <div class="row">
-    <h1 class="text-center mb-3" style= "font-size: 3rem; height: 60px;">ल्याब  रिपोर्ट हेर्न बारकोड / QR कोड हाल्नुहोस</h1>
+    <h1 class="text-center mb-3" style="font-size: 3rem; height: 60px;">ल्याब
+      रिपोर्ट हेर्न बारकोड / QR कोड हाल्नुहोस</h1>
     <div class="form-control form-control-lg">
       <input type="text" class="form-control form-control-lg"
         placeholder="Enter Barcode number" input type="number"
         [(ngModel)]="barcodeNumber" aria-label="Barcode Number">
     </div>
     <div class="col-md-12 mt-3">
-      <button class="btn btn-primary w-100 btn-lg" style="height: 60px;" (click)="onButtonClick()">Submit</button>
+      <button class="btn btn-primary w-100 btn-lg" style="height: 60px;"
+        (click)="onButtonClick()">Submit</button>
     </div>
   </div>
   <div class="warpper" style="margin-top: 20px;">
@@ -34,19 +36,6 @@
             <div class="rpt-curholder">
               <div class="rep-containr" [ngClass]="hospitalCode">
                 <div class="flex-container txt-left">
-                  <div class="single-head">
-                    <div *ngIf="report.PrintedBy"
-                      class="display-blk margin-7-hr">
-                      <strong>Last Printed By</strong> :
-                      {{report.PrintedByName}} , &nbsp;
-                    </div>
-                    <div *ngIf="report.PrintCount" class="display-blk">
-                      <div>
-                        <strong>Print Count</strong> :
-                        {{report.PrintCount}}
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
               <table class="patient-info-tabl lab-report-tbl">
@@ -61,201 +50,86 @@
                     <tr>
                       <td colspan="2" class="prelim-sig-holder">
                         <div class="patient-info-box" id="single-lab-report">
-                          <div
-                            class="flex-container flex-align-center justify-sp-around">
+                          <div class="flex-container flex-align-center justify-sp-between">
                             <div class="single-head">
                               <div class="left-col-data">
-                                <strong>Name</strong> :
-                                {{report.Lookups.PatientName}}
+                                <strong>Name</strong> : {{report.Lookups.PatientName}}
                               </div>
                             </div>
-                            <div class="single-head">
-                              <div [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                <div style="position: relative;">
-                                  <div *ngIf="showBarCode" class="lab-barcode-holder" style="
-                                  position: absolute;
-                                  right: 2px;
-                                  top: -2px;
-                                ">
-                                      <div style="position: relative;">
-                                        <svg #barcode></svg></div>             
-                                  </div>
-                                  <strong>Patient No.</strong> :
-                                  {{report.Lookups.PatientCode}}
-                                  (<b>{{report.Lookups.VisitType}}</b>)
-                                  <b *ngIf="hasInsurance"> / (Insurance)</b>
+                            <div class="right-col-data">
+                              <div class="right-hdr-aligned">
+                                <strong>Patient No.</strong> : {{report.Lookups.PatientCode}}
+                                (<b>{{report.Lookups.VisitType}}</b>)
+                                <b *ngIf="hasInsurance"> / (Insurance)</b>
+                                <div *ngIf="showBarCode" class="lab-barcode-holder">
+                                  <svg #barcode></svg>
                                 </div>
                               </div>
-                            </div> 
+                            </div>
                           </div>
-                          <div
-                            class="flex-container flex-align-center justify-sp-around">
+                          <div class="flex-container flex-align-center justify-sp-between">
                             <div class="single-head">
                               <div class="left-col-data">
                                 <strong>Address</strong> :
-                                {{report.Lookups.CountrySubDivisionName != null
-                                ?
-                                report.Lookups.CountrySubDivisionName + ',' : ''
-                                }}
-                                {{report.Lookups.MunicipalityName != null?
-                                report.Lookups.MunicipalityName +
-                                ',' : '' }}
+                                {{report.Lookups.CountrySubDivisionName != null ? report.Lookups.CountrySubDivisionName + ',' : ''}}
+                                {{report.Lookups.MunicipalityName != null ? report.Lookups.MunicipalityName + ',' : ''}}
                                 {{report.Lookups.Address}}
                               </div>
                             </div>
-                            <div class="single-head">
-                              <div class="right-col-data">
-                                <div
-                                [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                  <strong>Age/Sex</strong> :
-                                  {{DOB}}
-                                  <!-- /{{report.Lookups.Gender}} -->
-                                </div>
+                            <div class="right-col-data">
+                              <div class="right-hdr-aligned">
+                                <strong>Age/Sex</strong> : {{DOB}}
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="flex-container flex-align-center justify-sp-around">
+                          <div class="flex-container flex-align-center justify-sp-between">
                             <div class="referredby single-head">
-                              <!--removed white-space: nowrap;-->
                               <div class="left-col-data">
-                                <!-- <strong>Referred By :  </strong> <input *ngIf="enableDrEdit" onkeypress="this.style.width = ((this.value.length + 1) * 8) + 'px';" id="docNameTextBox" type="text" [(ngModel)]="report.Lookups.ReferredBy" (focusout)="makeDoctorEdit()" autofocus /> <span (click)="makeDoctorEdit()" *ngIf="!enableDrEdit">{{report.Lookups.ReferredBy}}</span> -->
-                                <strong>{{ referredByLabelInLabReport }} :
-                                </strong><span>{{report.Lookups.ReferredBy}}</span></div>
+                                <strong>{{ referredByLabelInLabReport }} :</strong><span>{{report.Lookups.ReferredBy}}</span>
+                              </div>
                             </div>
-                            <div class="single-head">
-                              <div class="right-col-data">
-                                <div
-                                  [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                  <strong>Receiving Date</strong> :
-                                  {{receivingDate}}
-                                </div>
+                            <div class="right-col-data">
+                              <div class="right-hdr-aligned">
+                                <strong>Receiving Date</strong> : {{receivingDate}}
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="flex-container flex-align-center justify-sp-around">
+                          <div class="flex-container flex-align-center justify-sp-between">
                             <div class="single-head">
                               <div class="left-col-data">
-                                <strong>Collection Site</strong> :
-                                {{collectionSite}}
+                                <strong>Collection Site</strong> : {{collectionSite}}
                               </div>
                             </div>
-                            <div class="single-head">
-                              <div class="right-col-data">
-                                <div
-                                  [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                  <strong>Testing Date</strong>
-                                  :{{testingDate}}
-                                </div>
+                            <div class="right-col-data">
+                              <div class="right-hdr-aligned">
+                                <strong>Testing Date</strong> : {{testingDate}}
                               </div>
                             </div>
                           </div>
-
-                          <div
-                            class="flex-container flex-align-center justify-sp-around">
+                          <div class="flex-container flex-align-center justify-sp-between">
                             <div class="single-head">
                               <div class="left-col-data">
-                                <strong>Lab No</strong> :
-                                {{report.Lookups.SampleCodeFormatted}}
+                                <strong>Lab No</strong> : {{report.Lookups.SampleCodeFormatted}}
                               </div>
                             </div>
-                            <div class="single-head">
-                              <div class="right-col-data">
-                                <div
-                                  [ngClass]="showBarCode ? 'right-hdrwith-barcode right-hdr':'right-hdr'">
-                                  <strong>Reporting Date</strong>
-                                  <!-- :{{report.Lookups.VerifiedOn}}
-                                  ({{report.Lookups.VerifiedOn }}) -->
-                                  :{{reportingDate}}
-                                </div>
+                            <div class="right-col-data">
+                              <div class="right-hdr-aligned">
+                                <strong>Receiving Date</strong> : {{receivingDate}}
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="flex-container flex-align-center justify-sp-around">
+                          <div class="flex-container flex-align-center justify-sp-between">
                             <div class="single-head">
                               <div class="left-col-data">
-                                <strong>Specimen</strong> :
-                                {{report.Lookups.Specimen}}
+                                <strong>Specimen</strong> : {{report.Lookups.Specimen}}
                               </div>
                             </div>
                           </div>
                         </div>
                       </td>
+                      
                     </tr>
                   </thead>
-                  <tfoot style="display: table-footer-group;">
-                    <tr>
-                      <td colspan="2">
-                        <div class="lab-qrholder text-center"
-                          *ngIf="qrCode && (qrCode.length > 0)">
-                          <!-- <qr-code *ngIf="qrCode" [value]="qrCode" [size]="80" [backgroundAlpha]="0"></qr-code> -->
-                        </div>
-                        <div id="signatureList" class="lab-rpt-sign"
-                          *ngIf="report.Signatures && showSignatories">
-                          <div
-                            class="flex-container justify-sp-between all-signatures"
-                            style="align-items: flex-end;">
-                            <ng-container *ngIf="report.Signatures.length">
-                              <div class="signature-item"
-                                *ngFor="let emp of report.Signatures; let i=index;">
-                                <div class="signature-image-holder"
-                                  *ngIf="showDigitalSignature && emp.SignatoryImageName && emp.SignatoryImageName.trim() != ''">
-                                  <div class="all-signature-images">
-                                    <img class="labsignature-image"
-                                      id="signImage{{i}}"
-                                      [style.display]="emp.Show ? 'inline-block':'none'"
-                                      src="../../../../../../fileuploads/EmployeeSignatures/{{emp.SignatoryImageName}}"
-                                      alt="{{emp.EmployeeFullName}} Signature" />
-                                  </div>
-                                </div>
-                                <div class="signature-item-inside"
-                                  [ngClass]="i>2 ? 'martop' : ''">
-                                  <div class="main-signature"
-                                    *ngIf="emp.Signature"
-                                    [innerHTML]="emp.Signature"></div>
-                                </div>
-                              </div>
-                            </ng-container>
-                            <div *ngIf="showReportDispatcherSignatory"
-                              class="signature-item">
-                              <div class="signature-image-holder"
-                                *ngIf="showDigitalSignature">
-                                <div class="all-signature-images">
-                                  <button id="hideCurrUserSignImage"
-                                    [style.display]="CreatedByUser.Show ? 'inline-block':'none'"
-                                    [ngStyle]="{'display':'inline-block'}"
-                                    (click)="ShowHideDigitalImage(CreatedByUser)"
-                                    class="close-btn no-print signature-image-remove"
-                                    data-html2canvas-ignore="true">
-                                    X
-                                  </button>
-                                  <button id="showCurrUserSignImage"
-                                    [style.display]="CreatedByUser.Show ? 'none':'inline-block'"
-                                    (click)="ShowHideDigitalImage(CreatedByUser)"
-                                    class="signature-image-show no-print">
-                                    Show ESignature
-                                  </button>
-                                  <img class="labsignature-image"
-                                    id="currUserSignImage"
-                                    [style.display]="CreatedByUser.Show ? 'inline-block':'none'"
-                                    src="../../../../../../fileuploads/EmployeeSignatures/{{CreatedByUser.SignatoryImageName}}"
-                                    alt="{{CreatedByUser.FullName}} Signature" />
-                                </div>
-                              </div>
-                              <div class="signature-item-inside dispatcher-sign"
-                                [ngClass]="report.Signatories && report.Signatories.length>2 ? 'martop' : ''">
-                                <div class="main-signature"
-                                  [innerHTML]="CreatedByUser.LabSignature"></div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </tfoot>
-
                   <!--Incase if template Type of a test is NOT html-->
                   <ng-container *ngIf="report.TemplateType != 'html'">
                     <tbody style="display: table-row-group;">
@@ -593,6 +467,76 @@
                       </tr>
                     </tbody>
                   </ng-container>
+                  <tfoot style="display: table-footer-group;">
+                    <tr>
+                      <td colspan="2">
+                        <div class="lab-qrholder text-center"
+                          *ngIf="qrCode && (qrCode.length > 0)">
+                          <!-- <qr-code *ngIf="qrCode" [value]="qrCode" [size]="80" [backgroundAlpha]="0"></qr-code> -->
+                        </div>
+                        <div id="signatureList" class="lab-rpt-sign"
+                          *ngIf="report.Signatures && showSignatories">
+                          <div
+                            class="flex-container justify-sp-between all-signatures"
+                            style="align-items: flex-end;">
+                            <ng-container *ngIf="report.Signatures.length">
+                              <div class="signature-item"
+                                *ngFor="let emp of report.Signatures; let i=index;">
+                                <div class="signature-image-holder"
+                                  *ngIf="showDigitalSignature && emp.SignatoryImageName && emp.SignatoryImageName.trim() != ''">
+                                  <div class="all-signature-images">
+                                    <img class="labsignature-image"
+                                      id="signImage{{i}}"
+                                      [style.display]="emp.Show ? 'inline-block':'none'"
+                                      src="../../../../../../fileuploads/EmployeeSignatures/{{emp.SignatoryImageName}}"
+                                      alt="{{emp.EmployeeFullName}} Signature" />
+                                  </div>
+                                </div>
+                                <div class="signature-item-inside"
+                                  [ngClass]="i>2 ? 'martop' : ''">
+                                  <div class="main-signature"
+                                    *ngIf="emp.Signature"
+                                    [innerHTML]="emp.Signature"></div>
+                                </div>
+                              </div>
+                            </ng-container>
+                            <div *ngIf="showReportDispatcherSignatory"
+                              class="signature-item">
+                              <div class="signature-image-holder"
+                                *ngIf="showDigitalSignature">
+                                <div class="all-signature-images">
+                                  <button id="hideCurrUserSignImage"
+                                    [style.display]="CreatedByUser.Show ? 'inline-block':'none'"
+                                    [ngStyle]="{'display':'inline-block'}"
+                                    (click)="ShowHideDigitalImage(CreatedByUser)"
+                                    class="close-btn no-print signature-image-remove"
+                                    data-html2canvas-ignore="true">
+                                    X
+                                  </button>
+                                  <button id="showCurrUserSignImage"
+                                    [style.display]="CreatedByUser.Show ? 'none':'inline-block'"
+                                    (click)="ShowHideDigitalImage(CreatedByUser)"
+                                    class="signature-image-show no-print">
+                                    Show ESignature
+                                  </button>
+                                  <img class="labsignature-image"
+                                    id="currUserSignImage"
+                                    [style.display]="CreatedByUser.Show ? 'inline-block':'none'"
+                                    src="../../../../../../fileuploads/EmployeeSignatures/{{CreatedByUser.SignatoryImageName}}"
+                                    alt="{{CreatedByUser.FullName}} Signature" />
+                                </div>
+                              </div>
+                              <div class="signature-item-inside dispatcher-sign"
+                                [ngClass]="report.Signatories && report.Signatories.length>2 ? 'martop' : ''">
+                                <div class="main-signature"
+                                  [innerHTML]="CreatedByUser.LabSignature"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tfoot>
                 </table>
               </div>
             </div>

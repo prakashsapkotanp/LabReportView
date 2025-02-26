@@ -987,3 +987,92 @@ tbody.culture-negative-testres tr td {
 .lab-qrholder{
      margin-bottom: 12px;
 }
+.header-container {
+  display: flex;
+  justify-content: flex-end; /* Aligns both to the right */
+  align-items: center;
+  gap: 10px; /* Adds space between the patient info and barcode */
+}
+
+.lab-barcode-holder {
+  position: relative;
+}
+
+.patient-info {
+  white-space: nowrap; /* Prevents text from wrapping */
+}
+.patient-info-box {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px; /* Reduced spacing between rows */
+}
+
+.flex-align-center {
+  align-items: center;
+}
+
+.justify-sp-between {
+  justify-content: space-between;
+}
+
+.single-head {
+  display: flex;
+  flex-direction: column;
+  width: 100%; /* Ensure it takes the full width */
+}
+
+.left-col-data {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.right-col-data {
+  font-size: 14px;
+  color: #333;
+  text-align: right;
+  margin-right: 15%; /* Adjust this value to create space from the right edge */
+  margin-left: auto; /* Push the element to the right */
+  padding: 0 10px; /* Optional: Add some padding for better spacing */
+  max-width: 300px; /* Optional: Set a max-width to control the size */
+}
+
+.right-hdr-aligned {
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.lab-barcode-holder {
+  margin-left: 10px; /* Space between patient number and barcode */
+  display: inline-flex;
+  justify-content: flex-start;
+}
+
+.lab-barcode-holder svg {
+  max-width: 120px; /* You can adjust this width based on your needs */
+  height: auto;
+}
+
+.referredby {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.referredby .left-col-data {
+  font-size: 14px;
+  color: #333;
+}
+
+strong {
+  font-weight: bold;
+}

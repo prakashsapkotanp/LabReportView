@@ -7,6 +7,7 @@ import * as moment from 'moment';
 @Component({
     selector: 'report-search-page',
     templateUrl: './report-search-page.html',
+    // templateUrl:'./view.html'
     styleUrls: ['./report-search-page.css'],
 })
 
@@ -79,7 +80,7 @@ export class ReportSearchComponent {
     onButtonClick(): void {
         this.loading = true;
         // Fetch the report based on the barcode number
-        this.http.get<any>(`/api/labReport/LabReportByRequisitionIds?barCodeNumber=${this.barcodeNumber}`, this.options)
+        this.http.get<any>(`https://localhost:7053/api/labReport/LabReportByRequisitionIds?barCodeNumber=${this.barcodeNumber}`, this.options)
             .subscribe(
                 (res) => {
                     this.report = res;
