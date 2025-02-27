@@ -495,11 +495,11 @@
                               <div class="signature-item"
                                 *ngFor="let emp of report.Signatures; let i=index;">
                                 <div class="signature-image-holder"
-                                  *ngIf="showDigitalSignature && emp.SignatoryImageName && emp.SignatoryImageName.trim() != ''">
+                                  *ngIf="emp.SignatoryImageName && emp.SignatoryImageName.trim() != ''">
                                   <div class="all-signature-images">
                                     <img class="labsignature-image"
                                       id="signImage{{i}}"
-                                      [style.display]="emp.Show ? 'inline-block':'none'"
+                                      [style.display]="'inline-block'"
                                       src="../assets/employee_signatures/{{emp.SignatoryImageName}}"
                                       alt="{{emp.EmployeeFullName}} Signature" />
                                   </div>
