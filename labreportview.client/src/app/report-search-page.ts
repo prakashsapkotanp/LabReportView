@@ -79,6 +79,7 @@ export class ReportSearchComponent {
 
     onButtonClick(): void {
         this.loading = true;
+        this.showPopUp = false;
         // Fetch the report based on the barcode number
         this.http.get<any>(`https://localhost:7053/api/labReport/LabReportByRequisitionIds?barCodeNumber=${this.barcodeNumber}`, this.options)
             .subscribe(
@@ -106,6 +107,10 @@ export class ReportSearchComponent {
                     this.showSignatories = true;
                     this.showDigitalSignature = true;
                     this.generateBarcode(this.stringBarCodeNumber);
+                    setTimeout(() => {
+                      this.printLabReport();
+                      this.loading =false;
+                  }, 1500);
                 },
                 (error) => {
                     alert('Test with this barcode number is not completed');
@@ -114,46 +119,40 @@ export class ReportSearchComponent {
             );
     }
     printLabReport() {
-        this.loading = true;
+      this.loading = true;
+    
+      const contentToPrint = document.getElementById("id_report_search_print-page");
+    
+      if (contentToPrint) {
+        const printContent = contentToPrint.innerHTML;
+    
 
-
-        const contentToPrint = document.getElementById("id_report_search_print-page");
-
-        if (contentToPrint) {
-            const printContent = contentToPrint.innerHTML;
-
-            // Rest of your print logic
-            const documentContent = `
-              <html>
-                <head>              
-                  <link rel="stylesheet" type="text/css" href="../assets/themes/PrintReportPage.css">
-                  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-                </head>
-                <body onload="window.print()">${printContent}</body>
-              </html>
-            `;
-
-            const iframe = document.createElement('iframe');
-            document.body.appendChild(iframe);
-            iframe.contentWindow?.document.open();
-            iframe.contentWindow?.document.write(documentContent);
-            iframe.contentWindow?.document.close();
-
-            setTimeout(() => {
-                document.body.removeChild(iframe);
-                this.loading = false;
-            }, 500);
+        const documentContent = `
+          <html>
+            <head>              
+              <link rel="stylesheet" type="text/css" href="../assets/themes/PrintReportPage.css">
+              <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+            </head>
+            <body onload="window.print(); window.close();">${printContent}</body>
+          </html>
+        `;
+    
+        const printWindow = window.open('', '_blank');
+        if (printWindow) {
+          printWindow.document.write(documentContent);
+          printWindow.document.close();
         } else {
-            this.loading = false;
-            alert("No content to print.");
+          alert("Failed to open print window.");
         }
-
+      } else {
+        this.loading = false;
+        alert("No content to print.");
+      }
+    
+      this.loading = false;
     }
     @ViewChild('barcode', { static: false }) barcodeElement!: ElementRef;
 
-    //   ngAfterViewInit() {
-    //    ;
-    //   }
     updateBarcode(newBarcode: string) {
         this.stringBarCodeNumber = newBarcode;
         this.generateBarcode(this.stringBarCodeNumber);

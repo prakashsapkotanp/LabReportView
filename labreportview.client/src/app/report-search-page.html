@@ -14,21 +14,26 @@
         [(ngModel)]="barcodeNumber" aria-label="Barcode Number">
     </div>
     <div class="col-md-12 mt-3">
-      <button class="btn btn-primary w-100 btn-lg" style="height: 60px;"
-        (click)="onButtonClick()">Submit</button>
+      <button class="btn btn-primary w-100 btn-lg" style="height: 60px;" [disabled]="loading"
+        (click)="onButtonClick()">Submit
+      </button>
+      <!-- <div class="spinner-border" role="status" *ngIf="loading">
+        <span class="sr-only">Loading...</span>
+      </div> -->
+      <div *ngIf="loading" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="warpper" style="margin-top: 20px;">
     <div class="row" *ngIf="report">
-      <div class="col-md-10">
-        <h3>Result:</h3>
-        <p>{{ report.Header }}</p>
-      </div>
       <div class="col-md-2">
-        <button class="btn btn-success" (click)="printLabReport()"> <i
+        <button class="btn btn-success" style=" display: none" (click)="printLabReport()"> <i
             class="fa fa-print"></i> Print</button>
       </div>
-      <div class="row" *ngIf="report!=null" style="margin-top: 2px;"
+      <div class="row" *ngIf="report!=null" style="margin-top: 2px; display: none;"
         id="id_report_search_print-page">
         <div #exportContent id="lab-report"
           class="padding-15-hr margin-50-tp">
@@ -38,15 +43,21 @@
                 <div class="flex-container txt-left">
                 </div>
               </div>
+              <div>
+                <div class="print-header">
+                  <img src="../assets/themes/mnk-customer-header-2.jpg" alt="photo" class="header-image">
+                </div>
+              </div>
               <table class="patient-info-tabl lab-report-tbl">
                 <thead class="show-gap">
-                  <tr>
+                  <!-- <tr  class="print-header">
                     <td colspan="2">
                       <div class="row">
                         <img src="../assets/themes/mnk-customer-header-2.jpg"
                           alt="photo">
                       </div>
-                    </tr>
+                    </tr> -->
+                    <div class="content">
                     <tr>
                       <td colspan="2" class="prelim-sig-holder">
                         <div class="patient-info-box" id="single-lab-report">
@@ -129,6 +140,7 @@
                       </td>
                       
                     </tr>
+                  </div>
                   </thead>
                   <!--Incase if template Type of a test is NOT html-->
                   <ng-container *ngIf="report.TemplateType != 'html'">
@@ -500,37 +512,8 @@
                                 </div>
                               </div>
                             </ng-container>
-                            <div *ngIf="showReportDispatcherSignatory"
-                              class="signature-item">
-                              <div class="signature-image-holder"
-                                *ngIf="showDigitalSignature">
-                                <div class="all-signature-images">
-                                  <button id="hideCurrUserSignImage"
-                                    [style.display]="CreatedByUser.Show ? 'inline-block':'none'"
-                                    [ngStyle]="{'display':'inline-block'}"
-                                    (click)="ShowHideDigitalImage(CreatedByUser)"
-                                    class="close-btn no-print signature-image-remove"
-                                    data-html2canvas-ignore="true">
-                                    X
-                                  </button>
-                                  <button id="showCurrUserSignImage"
-                                    [style.display]="CreatedByUser.Show ? 'none':'inline-block'"
-                                    (click)="ShowHideDigitalImage(CreatedByUser)"
-                                    class="signature-image-show no-print">
-                                    Show ESignature
-                                  </button>
-                                  <img class="labsignature-image"
-                                    id="currUserSignImage"
-                                    [style.display]="CreatedByUser.Show ? 'inline-block':'none'"
-                                    src="../../../../../../fileuploads/EmployeeSignatures/{{CreatedByUser.SignatoryImageName}}"
-                                    alt="{{CreatedByUser.FullName}} Signature" />
-                                </div>
-                              </div>
-                              <div class="signature-item-inside dispatcher-sign"
-                                [ngClass]="report.Signatories && report.Signatories.length>2 ? 'martop' : ''">
-                                <div class="main-signature"
-                                  [innerHTML]="CreatedByUser.LabSignature"></div>
-                              </div>
+                            <div style="text-align: left;">
+                                Please correlate with clinical significant
                             </div>
                           </div>
                         </div>
